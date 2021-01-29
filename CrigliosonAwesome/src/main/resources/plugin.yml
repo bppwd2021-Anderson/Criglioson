@@ -1,0 +1,7 @@
+name: CrigliosonPlugin
+version: ${project.version}
+main: com.criglioson.crigliosonplugin.CrigliosonPlugin
+api-version: 1.16
+authors: [TimCrowell, ChristianConsiglio, AlbinAnderson]
+description: Awesome plugin. It's awesome, trust me
+website: https://github.com/bppwd2021-Anderson/Criglioson
