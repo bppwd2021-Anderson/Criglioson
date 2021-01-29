@@ -1,14 +1,21 @@
 package com.criglioson.crigliosonplugin;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.BrewerInventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
+
 /* TODO: Ideas
     2 Person Horse
     Custom Potions / Effect:
@@ -79,9 +86,37 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
 
 
 
+    public void oilEffect()
+    { // bottle of oil :)
+        new BrewingRecipe(Material.POTION), (inventory, item, ingridient)
+        BrewingRecipe(Material.potion) = (PotionEffectType.LEVITATION, Color.WHITE)
+        ItemStack oilVile = new ItemStack(Material.POTION.);
+        ShapedRecipe oilVile = new ShapedRecipe();
+    oilVile.shape()
+     }
+}
+
+/*
+HALL OF PAST IDEAS
 
 
-//            if (tempLoc.getBlock().getType() != Material.AIR) {
+    // Lightning on bow hitting a block
+    @EventHandler
+    public void onBlockHit(ProjectileHitEvent didHit){
+        if(didHit.getHitBlock() != null){
+            Location hitBlock = didHit.getHitBlock().getLocation();
+            hitBlock.getWorld().strikeLightning(hitBlock);
+        }
+    }
+}
+// set health to half heart on leaving bed
+@EventHandler
+    public void onLeaveBed(PlayerBedLeaveEvent event){
+        Player player = event.getPlayer();
+        player.setHealth(0.5);
+    }
+
+*///            if (tempLoc.getBlock().getType() != Material.AIR) {
 //
 //                //Straight lines
 //
@@ -133,27 +168,4 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
 //            }
 //        }
 //    }
-}
-
-/*
-HALL OF PAST IDEAS
-
-
-    // Lightning on bow hitting a block
-    @EventHandler
-    public void onBlockHit(ProjectileHitEvent didHit){
-        if(didHit.getHitBlock() != null){
-            Location hitBlock = didHit.getHitBlock().getLocation();
-            hitBlock.getWorld().strikeLightning(hitBlock);
-        }
-    }
-}
-// set health to half heart on leaving bed
-@EventHandler
-    public void onLeaveBed(PlayerBedLeaveEvent event){
-        Player player = event.getPlayer();
-        player.setHealth(0.5);
-    }
-
-*/
 
