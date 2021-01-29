@@ -12,6 +12,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.Listener;
+import java.lang.*;
+import java.util.*;
 /* TODO: Ideas
     2 Person Horse
     Custom Potions / Effect:
@@ -54,8 +56,10 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
     //If only one person is on the horse, a second person can ride it as well
     @EventHandler
     public void joinHorse(PlayerInteractEntityEvent rightClickedHorse){
-        if(rightClickedHorse.getRightClicked().getPassengers().size() < 2){
-            rightClickedHorse.getRightClicked().addPassenger(rightClickedHorse.getPlayer());
+        if(rightClickedHorse.getRightClicked().getName().equals("HORSE")) {
+            if (rightClickedHorse.getRightClicked().getPassengers().size() < 2) {
+                rightClickedHorse.getRightClicked().addPassenger(rightClickedHorse.getPlayer());
+            }
         }
     }
 
