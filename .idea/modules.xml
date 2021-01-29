@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Criglioson.iml" filepath="$PROJECT_DIR$/.idea/Criglioson.iml" />
       <module fileurl="file://$PROJECT_DIR$/CrigliosonAwesome/CrigliosonAwesome.iml" filepath="$PROJECT_DIR$/CrigliosonAwesome/CrigliosonAwesome.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CrigliosonAwesome/CrigliosonPlugin.iml" filepath="$PROJECT_DIR$/CrigliosonAwesome/CrigliosonPlugin.iml" />
     </modules>
   </component>
 </project>

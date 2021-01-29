@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CrigliosonAwesome" />
+        <module name="CrigliosonPlugin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CrigliosonAwesome" target="1.8" />
+      <module name="CrigliosonPlugin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
