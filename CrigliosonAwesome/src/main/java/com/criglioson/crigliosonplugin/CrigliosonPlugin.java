@@ -2,15 +2,12 @@ package com.criglioson.crigliosonplugin;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.Listener;
 import java.lang.*;
 import java.util.*;
@@ -56,7 +53,7 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
     //If only one person is on the horse, a second person can ride it as well
     @EventHandler
     public void joinHorse(PlayerInteractEntityEvent rightClickedHorse){
-        if(rightClickedHorse.getRightClicked().getName().equals("HORSE")) {
+        if(rightClickedHorse.getRightClicked().getType().equals(EntityType.HORSE)) {
             if (rightClickedHorse.getRightClicked().getPassengers().size() < 2) {
                 rightClickedHorse.getRightClicked().addPassenger(rightClickedHorse.getPlayer());
             }
