@@ -1,14 +1,21 @@
 package com.criglioson.crigliosonplugin;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Slime;
 import org.bukkit.event.Listener;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
 /* TODO: Ideas
     2 Person Horse
     Custom Potions / Effect:
@@ -31,6 +38,19 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
         System.out.println("The plugin is loaded!");
         getServer().getPluginManager().registerEvents(this, this);
 
+        ItemStack oilVile = new ItemStack(Material.POTION);
+        PotionMeta meta = (PotionMeta)oilVile.getItemMeta();
+        meta.setColor(Color.WHITE);
+        meta.addCustomEffect(new PotionEffect(PotionEffectType.LEVITATION, 400 , 1), true);
+        oilVile.setItemMeta(meta);
+
+//    NamespacedKey key = new NamespacedKey(Plugin)
+        ShapedRecipe vileRecipe = new ShapedRecipe(null,oilVile);
+        vileRecipe.shape("*%*","%B%","*%*");
+        vileRecipe.setIngredient('*', Material.FEATHER);
+        vileRecipe.setIngredient('%', Material.GLOWSTONE_DUST);
+        vileRecipe.setIngredient('B', Material.HONEY_BOTTLE);
+        getServer().addRecipe(vileRecipe);
     }
 
     @Override
