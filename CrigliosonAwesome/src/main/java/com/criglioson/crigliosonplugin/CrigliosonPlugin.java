@@ -3,6 +3,8 @@ package com.criglioson.crigliosonplugin;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Horse;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -29,6 +31,7 @@ import java.util.*;
     Summon team mobs
     Bosses (Hard mode)
     Healthbars (Also hard mode)
+    Tame Dolphins
 
 *
 * */
@@ -39,19 +42,8 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
         System.out.println("The plugin is loaded!");
         getServer().getPluginManager().registerEvents(this, this);
 
-        ItemStack oilVile = new ItemStack(Material.POTION);
-        PotionMeta meta = (PotionMeta)oilVile.getItemMeta();
-        meta.setColor(Color.WHITE);
-        meta.addCustomEffect(new PotionEffect(PotionEffectType.LEVITATION, 400 , 1), true);
-        oilVile.setItemMeta(meta);
+        ItemManager.init();
 
-//    NamespacedKey key = new NamespacedKey(Plugin)
-        ShapedRecipe vileRecipe = new ShapedRecipe(null,oilVile);
-        vileRecipe.shape("*%*","%B%","*%*");
-        vileRecipe.setIngredient('*', Material.FEATHER);
-        vileRecipe.setIngredient('%', Material.GLOWSTONE_DUST);
-        vileRecipe.setIngredient('B', Material.HONEY_BOTTLE);
-        getServer().addRecipe(vileRecipe);
     }
 
     @Override
@@ -64,6 +56,7 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
     //
     @EventHandler
     public void onSneak(PlayerToggleSneakEvent event) {
+        event.getPlayer().getInventory().addItem(ItemManager.oil);
         if (event.isSneaking()) {
             lavaWalk(event.getPlayer());
         }
@@ -81,11 +74,12 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
 
     //Custom Function
     public void lavaWalk(Player player){
+
         Location sneakLoc = player.getLocation();
         Location tempLoc = new Location(sneakLoc.getWorld(), sneakLoc.getX(), sneakLoc.getY()-1, sneakLoc.getZ());
+        int radius = 3;
+        Location[] blocksToChange = new Location[(radius * 2) + 1];
         if(tempLoc.getBlock().getType() != Material.AIR) {
-            int radius = 3;
-            Location[] blocksToChange = new Location[(radius * 2) + 1];
             int count = 0;
             tempLoc.setX(tempLoc.getX() - radius);
             tempLoc.setZ(tempLoc.getZ() + radius);
@@ -95,12 +89,13 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
                     tempLoc.setZ(tempLoc.getZ() + z);
                     if (tempLoc.getBlock().getType() != Material.AIR && tempLoc.getBlock().getType() != Material.OBSIDIAN) {
                         blocksToChange[count] = tempLoc;
+                        count++;
                     }
                 }
             }
-            for (Location block : blocksToChange) {
-                block.getBlock().setType(Material.OBSIDIAN);
-            }
+        }
+        for (Location block : blocksToChange) {
+            block.getBlock().setType(Material.OBSIDIAN);
         }
     }
 
