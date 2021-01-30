@@ -3,19 +3,19 @@ package com.criglioson.crigliosonplugin;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Slime;
 import org.bukkit.event.Listener;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.lang.*;
+import java.util.*;
 /* TODO: Ideas
     2 Person Horse
     Custom Potions / Effect:
@@ -68,6 +68,16 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
         }
     }
 
+    //If only one person is on the horse, a second person can ride it as well
+    @EventHandler
+    public void joinHorse(PlayerInteractEntityEvent rightClickedHorse){
+        if(rightClickedHorse.getRightClicked().getType().equals(EntityType.HORSE)) {
+            if (rightClickedHorse.getRightClicked().getPassengers().size() < 2) {
+                rightClickedHorse.getRightClicked().addPassenger(rightClickedHorse.getPlayer());
+            }
+        }
+    }
+
     //Custom Function
     public void lavaWalk(Player player){
         Location sneakLoc = player.getLocation();
@@ -92,6 +102,8 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
             }
         }
     }
+
+
 
 
 
