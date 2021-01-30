@@ -2,6 +2,7 @@ package com.criglioson.crigliosonplugin;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,7 +14,14 @@ import java.util.*;
 
 public class ItemManager {
     public static ItemStack oil;
-    public static void init(){ // Call this to create all the items on plugin load
+    public static NamespacedKey key;
+    public static CrigliosonPlugin plugin;
+    public void ItemManager(NamespacedKey incomingKey){
+
+    }
+    public static void init(CrigliosonPlugin incomingKey){ // Call this to create all the items on plugin load
+        plugin = incomingKey;
+        key = new NamespacedKey(incomingKey, incomingKey.getName());
         createOil();
     }
     private static void createOil(){
@@ -26,12 +34,11 @@ public class ItemManager {
         oilVile.setItemMeta(meta);
         oil = oilVile;
         // Code for the recipe
-////    NamespacedKey key = new NamespacedKey(Plugin)
-//        ShapedRecipe vileRecipe = new ShapedRecipe(null,oilVile);
-//        vileRecipe.shape("*%*","%B%","*%*");
-//        vileRecipe.setIngredient('*', Material.FEATHER);
-//        vileRecipe.setIngredient('%', Material.GLOWSTONE_DUST);
-//        vileRecipe.setIngredient('B', Material.HONEY_BOTTLE);
-//        getServer().addRecipe(vileRecipe);
+        ShapedRecipe vileRecipe = new ShapedRecipe(key, oilVile);
+       vileRecipe.shape("*%*","%B%","*%*");
+       vileRecipe.setIngredient('*', Material.FEATHER);
+       vileRecipe.setIngredient('%', Material.GLOWSTONE_DUST);
+       vileRecipe.setIngredient('B', Material.HONEY_BOTTLE);
+       plugin.getServer().addRecipe(vileRecipe);
     }
 }

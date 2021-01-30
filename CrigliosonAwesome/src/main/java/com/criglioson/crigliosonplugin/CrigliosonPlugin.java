@@ -3,8 +3,7 @@ package com.criglioson.crigliosonplugin;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.Player;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -42,7 +41,7 @@ public final class CrigliosonPlugin extends JavaPlugin implements Listener {
         System.out.println("The plugin is loaded!");
         getServer().getPluginManager().registerEvents(this, this);
 
-        ItemManager.init();
+        ItemManager.init(this);
 
     }
 
